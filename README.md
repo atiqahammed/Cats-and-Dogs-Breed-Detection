@@ -99,8 +99,9 @@ To add the convolution layer, we call the add function with the classifier objec
 It’s common practice to start with 32 feature detectors for CNNs. The next parameter is input_shape which is the shape of the input image. The images will be converted into this shape during preprocessing. If the image is black and white it will be converted into a 2D array and if the image is colored it will be converted into a 3D array.
 
 In this case, we’ll assume that we are working with colored images. Input_shape is passed in a tuple with the number of channels, which is 3 for a colored image, and the dimensions of the 2D array in each channel. If you are not using a GPU it’s advisable to use lower dimensions to reduce the computation time. When using a CPU, 64 by 64 dimensions performs well. The final parameter is the activation function. Classifying images is a nonlinear problem. So we use the rectifier function to ensure that we don’t have negative pixel values during computation. That’s how we achieve non-linearity.
+``` python
 classifier.add(Convolution2D(32, 3, 3, input_shape = (256, 256, 3), activation='relu'))
-
+```
 #### 3) Pooling
 In this step we reduce the size of the feature map. Generally we create a pool size of 2x2 for max pooling. This enables us to reduce the size of the feature map while not losing important image information.
 ``` python
